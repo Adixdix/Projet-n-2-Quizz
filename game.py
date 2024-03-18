@@ -1,10 +1,12 @@
+import pygame
 class Game():
     def __init__ (game_on, player_response, question, reponse):
         game_on = True
+        players_list = []
         player_response = #TO DECIDE
         question = #TO DECIDE
         response = #TO DECIDE
-        
+    
     def get_question(self):
         """Get the question from the database"""
         #TODO
@@ -15,6 +17,9 @@ class Game():
         
     def get_player_response(self):
         """Get the response from the player at the main microbit"""
+        #TODO
+
+    def update_playerlist(self):
         #TODO
         
     def run(self):
