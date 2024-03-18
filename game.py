@@ -1,4 +1,5 @@
 import pygame
+#Joshua LERAS IRIARTE 
 class Game():
     def __init__ (game_on, player_response, question, reponse):
         game_on = True
