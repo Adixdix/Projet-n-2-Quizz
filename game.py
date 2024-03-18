@@ -6,12 +6,18 @@ class Game():
         response = #TO DECIDE
         
     def get_question(self):
+        """Get the question from the database"""
         #TODO
         
     def get_response(self):
+        """Get the response from the question in the database"""
         #TODO
+        
     def get_player_response(self):
+        """Get the response from the player at the main microbit"""
         #TODO
         
     def run(self):
-        #TODO
+        """Run the game"""
+        while game_on :
+            #TODO
