@@ -21,6 +21,7 @@ class Game():
         #TODO
 
     def update_playerlist(self):
+        """Update the number of players"""
         #TODO
         
     def run(self):
