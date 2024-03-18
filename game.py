@@ -10,6 +10,8 @@ class Game():
         
     def get_response(self):
         #TODO
-    
+    def get_player_response(self):
+        #TODO
+        
     def run(self):
         #TODO
