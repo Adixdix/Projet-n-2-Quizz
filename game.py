@@ -31,8 +31,15 @@ class Game():
     def run(self):
         """Run the game"""
         while game_on :
-            if self.in_menu:
-                self.menu.update_menu(self.screen)
-                self.button.update(self.screen)
-                if self.menu.check_button_input():
-                    self.in_menu = False
+             for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                    self.score.quit()
+                if self.in_menu:
+                    self.menu.update_menu(self.screen)
+                    self.button.update(self.screen)
+                    if self.menu.check_button_input():
+                        self.in_menu = False
+                else:
+                    #todo
+                
