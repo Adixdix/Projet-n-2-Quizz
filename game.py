@@ -3,7 +3,7 @@ import pygame
 class Game():
     def __init__ (game_on, player_response, question, reponse):
         self.in_menu = True
-        self.menu = Menu("Tetris")
+        self.menu = Menu("Super QUIZZ")
         self.button = self.menu.play_button
         
         self.game_on = True
