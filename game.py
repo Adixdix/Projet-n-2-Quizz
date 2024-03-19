@@ -4,9 +4,9 @@ class Game():
     def __init__ (game_on, player_response, question, reponse):
         game_on = True
         players_list = []
-        player_response = #TO DECIDE
-        question = #TO DECIDE
-        response = #TO DECIDE
+        player_response = ''
+        question = ''
+        response = []
     
     def get_question(self):
         """Get the question from the database"""
