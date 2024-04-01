@@ -1,7 +1,9 @@
 import pygame
+import Menu
+
 #Joshua LERAS IRIARTE 
 class Game():
-    def __init__ (game_on, player_response, question, reponse):
+    def __init__ (self, game_on, player_response, question, reponse):
         self.in_menu = True
         self.menu = Menu("Super QUIZZ")
         self.button = self.menu.play_button
@@ -30,7 +32,7 @@ class Game():
         
     def run(self):
         """Run the game"""
-        while game_on :
+        while self.game_on :
              for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
@@ -41,5 +43,5 @@ class Game():
                     if self.menu.check_button_input():
                         self.in_menu = False
                 else:
+                    pass
                     #todo
-                
