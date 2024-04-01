@@ -1,5 +1,5 @@
 import pygame
-import Menu
+from menu import Menu
 
 #Joshua LERAS IRIARTE 
 class Game():
