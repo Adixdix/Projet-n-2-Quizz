@@ -13,22 +13,6 @@ class Game():
         self.player_response = ''
         self.question = ''
         self.response = []
-    
-    def get_question(self):
-        """Get the question from the database"""
-        #TODO
-        
-    def get_response(self):
-        """Get the response from the question in the database"""
-        #TODO
-        
-    def get_player_response(self):
-        """Get the response from the player at the main microbit"""
-        #TODO
-
-    def update_playerlist(self):
-        """Update the number of players"""
-        #TODO
         
     def run(self):
         """Run the game"""
@@ -43,5 +27,20 @@ class Game():
                     if self.menu.check_button_input():
                         self.in_menu = False
                 else:
-                    pass
-                    #todo
+                    self.solo()
+
+    def solo(self):
+        question = #missing method (dict ex: {question:[answer1, answer2]} )
+        #TODO
+        
+    def get_answer(self):
+        #I NEED YOUR METHODS
+
+    def set_playerid(self):
+        #TODO
+
+    def get_player(self):
+        #TODO
+        
+        
+                    
