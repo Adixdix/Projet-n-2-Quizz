@@ -16,17 +16,34 @@
        font-weight: bold;
        color: white;
        text-shadow: 2px 2px black;
+
     }
 
     button {
-        position: relative;
         display: block;
         padding : 10px 10px;
         margin: 0 auto;
         border: 1px solid black;
-        width:200px;
+        width: 200px;
+        background-color: #ffffff;
+        border: none;
+        color: black;
+        font-size: 14px;
+        font-family:'Montserrat';
+        border-radius: 8px;
+        transition-duration: 0.2s;
         
     }
+
+
+    button:hover {
+        background-color: #a1a1a1; 
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }  
+
+    button.disabled {
+       opacity: 0.6;
+}
   </style>
 
 </head>
@@ -37,11 +54,11 @@
     <h3>Réalisé par Joshua, Adam. H, Lukas</h3>
   </header>
   <section>
-    <button>Cahier des charges</button> &nbsp;&nbsp;&nbsp;
-    <button>Répartition des tâches</button> &nbsp;&nbsp;&nbsp;
-    <button>Déroulement du projet</button> &nbsp;&nbsp;&nbsp;
-    <button>Structures de données</button> &nbsp;&nbsp;&nbsp;
-    <button>Code source</button>
+    <button onclick = "window.location.href='Site_quizz(cahier_des_charges).html';">Cahier des charges</button> &nbsp;&nbsp;&nbsp;
+    <button onclick = "window.location.href='Site_quizz(Repartition_des_taches).html';">Répartition des tâches</button> &nbsp;&nbsp;&nbsp;
+    <button class="disabled">Déroulement du projet</button> &nbsp;&nbsp;&nbsp;
+    <button class="disabled">Structures de données</button> &nbsp;&nbsp;&nbsp;
+    <button onclick = "window.location.href='Site_quizz(code_source).html';">Code source</button>
   </section>
 
 </body></html>
