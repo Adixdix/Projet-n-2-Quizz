@@ -1,0 +1,42 @@
+table,
+caption,
+th,
+td {
+    border: 2px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+}
+
+/* Pemet de définir les elements en css du tableau de la page Avancement */
+caption,
+th,
+td {
+    padding: 8px;
+
+}
+
+/* idem */
+body {
+    background-image: url("Image_fond_site.jpg");
+    background-size: cover;
+}
+
+h1,
+h3 {
+    color: white;
+}
+
+button {
+    display: block;
+    padding: 10px 10px;
+    margin: 0 auto;
+    border: 1px solid black;
+    width: 200px;
+    background-color: #ffffff;
+    border: none;
+    color: black;
+    font-size: 14px;
+    font-family: 'Montserrat';
+    border-radius: 8px;
+    transition-duration: 0.2s;
+
+}

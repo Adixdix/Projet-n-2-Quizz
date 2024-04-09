@@ -1,65 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr">
-<!--Ecrit par AdamH-->
+
 <head>
     <meta charset="UTF-8">
-    <title>Projet n°2:Quizz</title>
-    <style>
-        body {
-          background-image: url("bg.jpg");
-          background-size: cover;
-        }
-        h1{
-       color: white;
-        }
-        button {
-        position: center;
-        display: block;
-        padding : 10px 10px;
-        margin: 0 auto;
-        border: 1px solid black;
-        width:280px;
-        }
-    </style>    
+    <title>Projet n°2: Quizz</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Importer le fichier css -->
 </head>
+
 <body>
-    
+
     <h1><u>Projet n°2:Quizz</u></h1>
     <center>
         <div class="top-buttons">
-            <a href="index.html"><button 
-                    style="display:inline-flex;text-align: right;margin-bottom:auto;"><br>
+            <a href="index.html"><button style="display:inline-flex;text-align: right;margin-bottom:auto;">
                     <font color=#000000>Menu principal</font>
                     <!-- Bouton pour se diriger vers la page du Menu principal -->
-            </button>
+            </a>
             <a href="Site_quizz(cahier_des_charges).html"><button
                     style="display:inline-flex;text-align: right;margin-bottom:auto;"><br>
-                    <font color=#000000>cahier des charges</font>
-                    <!-- Bouton pour se diriger vers la page du cahier des charges -->
-            </button>
+                    <font color=#000000>Cahier des charges</font>
+                    <!-- Bouton pour se diriger vers la page de la Repartition des taches -->
+            </a>
             <a href="Site_quizz(Deroulement_du_projet).html"><button
                     style="display:inline-flex;text-align: right;margin-bottom:auto;"><br>
                     <font color=#000000>Deroulement du projet</font>
                     <!-- Bouton pour se diriger vers la page du Deroulement du projet -->
-            </button>
+            </a>
             <a href="Site_quizz(Structure_de_donnée).html"><button
                     style="display:inline-flex;text-align: right;margin-bottom:auto;"><br>
                     <font color=#000000>Structure de donnée</font>
                     <!-- Bouton pour se diriger vers la page des Structure de donnée -->
-            </button>
-            <a href="Site_quizz(Structure_de_donnée).html"><button
+            </a>
+            <a href="Site_quizz(Code_source).html"><button
                     style="display:inline-flex;text-align: right;margin-bottom:auto;"><br>
-                    <font color=#000000>Structure de donnée</font>
-                    <!-- Bouton pour se diriger vers la page des Structure de donnée -->
-            </button>
-        </div>                    
-    </center>
-    <br>
-    <center> 
-        <iframe src="Projet_n°2_Quizz(Repartition_des_taches).pdf" width="90%" height="800"
-        style="border: 1px solid black;">
-        </iframe>
-    </center>
+                    <font color=#000000>Code source</font>
+                    <!-- Bouton pour se diriger vers la page du Code source -->
+            </a>
+        </div>
 
+        <br>
+        <table> <!-- Permet de crée un tableau -->
+            <caption>
+                <h2><u>Repartition_des_tâches :</u></h2><!-- le titre du tableau -->
+            </caption>
+            <tr>
+                <th></th>
+                <th>
+                    <h3>Joshua</h3>
+                </th>
+                <th>
+                    <h3>Lukas</h3>
+                </th>
+                <th>
+                    <h3>AdamH</h3>
+                </th>
+            </tr>
+            <tr>
+                <td>V1:</td>
+                <td>Interrogation et modification de la base de 
+                    données en python plus gestion basique du jeu 
+                    en python</td>
+                <td>Création et peuplement de la base de données.</td>
+                <td>Gestion du multi-joueurs grâce au micro:bit. </td>
+            </tr>
+            <tr>
+                <td>V2:</td>
+                <td>Amélioration du jeu avec de nouvelle fonctionnalité.</td>
+                <td>Création de la partie graphique avec tkinter.</td>
+                <td>Amélioration du jeu avec de nouvelle fonctionnalité grâce au micro:bit.</td>
+            </tr>
+            <tr>
+                <td>V3:</td>
+                <td>Commencement de la proggramation de la classe carte</td>
+                <td>Appropriation des classes principales du code de Lenny</td>
+                <td>Commencement de la programmation du site</td>
+            </tr>
+        </table>
+    </center>
 </body>
+
 </html>
