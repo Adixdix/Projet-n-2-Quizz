@@ -19,6 +19,7 @@ class Master_card:
                         self.set_player_id(serial_number_received,str(len(self._palyer_liste) + 1 ))
                         break
 
+
     def set_player_id(self,serial_number_received:int,id:str): 
         self._palyer_liste ["j" + id] = serial_number_received
         radio.on()
@@ -27,6 +28,20 @@ class Master_card:
             sleep(50)
             answer_send = radio.receive()
             if answer_send == "ok":
+                radio.off()
                 break
             sleep(50)
 
+
+    def get_response_mode(self):
+        radio.on()
+        for joueur in range(len(self._palyer_liste)):
+            radio.send("go reply"+str("j" + joueur))
+        radio.off()
+
+    def response_recovery(self):
+        radio.on()  
+        while True:
+            answer = radio.receive()
+            if answer != None :
+                

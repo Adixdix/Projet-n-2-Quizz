@@ -6,13 +6,11 @@ import random
 def get_serial_number(size = 20):
     set_serial_number = ""
     for _ in range(size):
-        set_serial_number = set_serial_number + str(random.randint(0,9))
-    return int(set_serial_number)
+        serial_number = set_serial_number + str(random.randint(0,9))
+        return(serial_number)
 
-
-def teste ():
+def send_serial_number(serial_number):
     radio.on()
-    serial_number = get_serial_number()
     while True:
         radio.send(str(serial_number))
         id = radio.receive()
@@ -21,4 +19,11 @@ def teste ():
                 serial_number_send = serial_number_send + id[index]
             if serial_number == serial_number_send:
                 id_player = "j"+str(id[23])
-                print(id_player)
+                return id_player
+
+
+def main(serial_number):
+    radio.on()
+    while True:
+        mode = radio.receive()
+        if mode  == "go reply"+str(serial_number)
