@@ -1,6 +1,6 @@
 # Created by Lukas 
 
-class Questions():
+class SGBD():
     def __init__(self):
         pass
         # TODO
