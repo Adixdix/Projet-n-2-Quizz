@@ -25,16 +25,15 @@ class Master_card:
         self._palyer_liste ["j" + id] = serial_number_received
         radio.on()
         while True:
-            radio.send(str(serial_number_received)+":"+"j"+str(id))
-            sleep(50)
-            answer_send = radio.receive()
-            if answer_send == "ok":
+            radio.send(str(serial_number_received)+":"+"j"+str(id)) 
+            reception = radio.receive()
+            if reception[len(reception)-1] == id and reception[0] == "o" and reception[1] == "k":
                 radio.off()
                 break
             sleep(50)
 
 
-    def get_answer_mode(self):
+    def ste_answer_mode(self):
         radio.on()
         for joueur in range(len(self._palyer_liste)):
             radio.send("go reply"+":"+"j"+str(joueur))
@@ -45,9 +44,9 @@ class Master_card:
         radio.on()  
         for _ in range(time_out):
             answer = radio.receive()
-            if answer != None :
-                self.player_answer_list["j"+str(answer[1])] = answer[3]
-                radio.send("j"+str(answer[1])+":ok")
+            if answer[0] in ["A", "B", "C", "D"] :
+                self.player_answer_list["j"+str(answer[len(answer)-1])] = answer[0]
+                radio.send("ok:j"+str(answer[len(answer)-1]))
                 radio.off()
 
     def get_player_answer_liste(self):
@@ -55,5 +54,5 @@ class Master_card:
     
     def send_corrections_answer(self,player_answer_list_corrections):
         for key in player_answer_list_corrections:
-            radio.send(str(player_answer_list_corrections[key])+":"+str(key))
+            radio.send(str(key)+":"+str(player_answer_list_corrections[key]))
                 
