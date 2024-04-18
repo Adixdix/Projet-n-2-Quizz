@@ -4,37 +4,6 @@ from ttkbootstrap import Style
 
 class Game():
     def __init__(self):
-        #Tkinter thingys
-        self.root = tk.Tk()
-        self.current_question = 0
-        self.score = 0
-        self.choice_btns = []
-        self.qs_label = ttk.Label(
-            self.root,
-            anchor="center",
-            wraplength=500,
-            padding=10
-        )
-        self.feedback_label = ttk.Label(
-            self.root,
-            anchor="center",
-            padding=10
-        )
-        self.score_label = ttk.Label(
-            self.root,
-            text="Score: 0/{}".format(len(self.quiz_data)),
-            anchor="center",
-            padding=10
-        )
-        self.next_btn = ttk.Button(
-            self.root,
-            text="Next",
-            command=self.next_question(),
-            state="disabled"
-        )
-        
-        
-        
         #test, waiting for those juicy SQL methods
         self.quiz_data = [
     {
@@ -59,12 +28,42 @@ class Game():
     }
 
 ]
+        #Tkinter thingys
+        self.root = tk.Tk()
+        self.current_question = 0
+        self.score = 0
+        self.choice_btns = []
+        self.qs_label = ttk.Label(
+            self.root,
+            anchor="center",
+            wraplength=500,
+            padding=10
+        )
+        self.feedback_label = ttk.Label(
+            self.root,
+            anchor="center",
+            padding=10
+        )
+        self.score_label = ttk.Label(
+            self.root,
+            text="Score: 0/{}".format(len(list(self.quiz_data))),
+            anchor="center",
+            padding=10
+        )
+        self.next_btn = ttk.Button(
+            self.root,
+            text="Next",
+            command=self.next_question(),
+            state="disabled"
+        )
+        
+        
         
         
     def show_question(self):
     # Get the current question from the quiz_data list
         question = self.quiz_data[self.current_question]
-        self.qs_label.config(text=question["question"]) #bug, overload to fix
+        self.qs_label.config(text=str(question["question"])) #bug, overload to fix, pain in the ass
 
     # Display the choices on the buttons
         choices = question["choices"]
@@ -124,7 +123,7 @@ class Game():
         for i in range(4):
             button = ttk.Button(
                 self.root,
-                command=lambda i=i: self.check_answer(i)
+                command=lambda i=i: (self.check_answer(i))
             )
         button.pack(pady=5)
         self.choice_btns.append(button)
@@ -151,5 +150,6 @@ class Game():
 
 # Start the main event loop
         self.root.mainloop()
+
 
 Game.run()
