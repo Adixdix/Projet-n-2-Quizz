@@ -53,11 +53,8 @@ class Game():
         self.next_btn = ttk.Button(
             self.root,
             text="Next",
-            command=self.next_question(),
             state="disabled"
         )
-        
-        
         
         
     def show_question(self):
@@ -68,6 +65,7 @@ class Game():
     # Display the choices on the buttons
         choices = question["choices"]
         for i in range(4):
+            print(self.choice_btns)
             self.choice_btns[i].config(text=choices[i], state="normal") # Reset button state
 
     # Clear the feedback label and disable the next button
@@ -125,8 +123,9 @@ class Game():
                 self.root,
                 command=lambda i=i: (self.check_answer(i))
             )
-        button.pack(pady=5)
-        self.choice_btns.append(button)
+            button.pack(pady=5)
+            self.choice_btns.append(button)
+        print(self.choice_btns)
 
 # Create the feedback label
         
@@ -140,6 +139,12 @@ class Game():
         self.score_label.pack(pady=10)
 
 # Create the next button
+        self.next_btn = ttk.Button(
+            self.root,
+            text="Next",
+            command=self.next_question(),
+            state="disabled"
+        )
         self.next_btn.pack(pady=10)
 
 # Initialize the current question index
@@ -150,6 +155,5 @@ class Game():
 
 # Start the main event loop
         self.root.mainloop()
-        
-#game = Game()
-#game.run()
+game = Game()
+game.run()
