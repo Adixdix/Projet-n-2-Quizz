@@ -150,6 +150,6 @@ class Game():
 
 # Start the main event loop
         self.root.mainloop()
-
-
-Game.run()
+        
+#game = Game()
+#game.run()
