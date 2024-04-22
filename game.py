@@ -58,6 +58,7 @@ class Game():
         
         
     def show_question(self):
+        """Display the current question and the answer"""
     # Get the current question from the quiz_data list
         question = self.quiz_data[self.current_question]
         self.qs_label.config(text=str(question["question"])) #bug, overload to fix, pain in the ass
@@ -74,6 +75,7 @@ class Game():
     
     
     def check_answer(self,choice):
+        """Check if correct answer"""
     # Get the current question from the quiz_data list
         question = self.quiz_data[self.current_question]
         selected_choice = self.choice_btns[choice].cget("text")
@@ -94,6 +96,7 @@ class Game():
     
     
     def next_question(self):
+        """Pass to the next question until the end"""
         self.current_question +=1
 
         if self.current_question < len(self.quiz_data):
@@ -107,6 +110,7 @@ class Game():
             
             
     def run(self):
+        """Run the quizz"""
         print(self.quiz_data)
         self.root.title("Quiz App")
         self.root.geometry("600x500")
