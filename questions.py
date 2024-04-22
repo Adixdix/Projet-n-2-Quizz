@@ -7,7 +7,6 @@ class Database():
         # Will connect to the database each time this class is accessed
         self.connection = pymysql.connect(host='localhost',
                                     user='root',
-                                    password='root',
                                     database='questions',
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
