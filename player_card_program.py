@@ -3,7 +3,7 @@ import radio
 import random
 
 
-class Player_card:
+class Player_card:       
     def __init__(self) -> None:
         self.different_answer = ["A", "B", "C", "D"]
         self.id_player = None
@@ -58,4 +58,4 @@ class Player_card:
                             radio.off()
                             break
 Player1 = Player_card                        
-print(Player1.get_serial_number(Player1))
+print(Player1.get_serial_number(Player1))      #Teste a enlever a la fin.
