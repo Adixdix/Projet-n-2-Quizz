@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 from ttkbootstrap import Style
-
+#BY joshua LERAS IRIARTE
 class Game():
     def __init__(self):
         #test, waiting for those juicy SQL methods
