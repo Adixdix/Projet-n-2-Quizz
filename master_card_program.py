@@ -18,6 +18,7 @@ class Master_card:
                         return None 
                     else:
                         self.set_player_id(serial_number_received,str(len(self._palyer_liste) + 1 ))
+                        radio.off()
                         break
 
 
