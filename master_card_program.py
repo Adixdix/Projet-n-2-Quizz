@@ -34,7 +34,7 @@ class Master_card:
             sleep(50)
 
 
-    def ste_answer_mode(self):
+    def set_answer_mode(self):
         radio.on()
         for joueur in range(len(self._palyer_liste)):
             radio.send("go reply"+":"+"j"+str(joueur))
@@ -46,12 +46,13 @@ class Master_card:
         for _ in range(time_out):
             answer = radio.receive()
             if answer[0] in ["A", "B", "C", "D"] :
-                self.player_answer_list["j"+str(answer[len(answer)-1])] = answer[0]
-                radio.send("ok:j"+str(answer[len(answer)-1]))
                 radio.off()
+                self.player_answer_list["j"+str(answer[len(answer)-1])] = answer[0]
+               
 
     def get_player_answer_liste(self):
         return self.player_answer_list
+
     
     def send_corrections_answer(self,player_answer_list_corrections):
         for key in player_answer_list_corrections:
