@@ -49,13 +49,9 @@ class Player_card:
                     display.show(Image.YES, wait=True)
                     print(different_answer[index-1])#Attention a enlever a la fin 
                     radio.on()
-                    while True:
-                        radio.send(str(different_answer[index-1])+":"+str(self.id_player)) 
-                        reception = radio.receive()
-                        for i in range(1):
-                            reception_ =  reception_ + reception[4 + i]
-                        if reception[len(reception)] == self.id_player[1] and  reception_ == "ok":
-                            radio.off()
-                            break
+                    radio.send(str(different_answer[index-1])+":"+str(self.id_player)) 
+                    radio.off()
+
+
 Player1 = Player_card                        
 print(Player1.get_serial_number(Player1))      #Teste a enlever a la fin.
