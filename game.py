@@ -1,9 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 from ttkbootstrap import Style
+from master_card_program import Master_card
+from Database import Database
 #BY joshua LERAS IRIARTE
 class Game():
     def __init__(self):
+        self.Card_Master = Master_card()
+        self.Database_quizz = Database()
+        self.microbit_answer = []
         #test, waiting for those juicy SQL methods
         self.quiz_data = [
     {
@@ -107,7 +112,7 @@ class Game():
             messagebox.showinfo("Quiz Completed",
                                 "Quiz Completed! Final score: {}/{}".format(self.score, len(self.quiz_data)))
             self.root.destroy()
-            
+    
             
     def run(self):
         """Run the quizz"""
@@ -121,7 +126,7 @@ class Game():
         style.configure("TLabel", font=("Helvetica", 20))
         style.configure("TButton", font=("Helvetica", 16))
 
-# Create the choice buttons
+# Create the choice buttons + microbit 
         for i in range(4):
             button = ttk.Button(
                 self.root,
@@ -130,7 +135,7 @@ class Game():
             button.pack(pady=5)
             self.choice_btns.append(button)
         print(self.choice_btns)
-
+        
 # Create the feedback label
         
         self.feedback_label.pack(pady=10)
@@ -161,3 +166,4 @@ class Game():
         self.root.mainloop()
 game = Game()
 game.run()
+
