@@ -1,4 +1,4 @@
-from microbit import display, Image, button_a, button_b, sleep
+from microbit import uart
 import radio
 
 
@@ -12,7 +12,7 @@ class Master_card:
         radio.on()
         while True:
             serial_number_received = radio.receive()
-            if serial_number_received != None and len(serial_number_received) == 20 :
+            if serial_number_received != None :
                 for index in range(len(self._palyer_liste)):
                     if serial_number_received == self._palyer_liste["j"+str(index)]:
                         return None 
@@ -21,16 +21,13 @@ class Master_card:
                         break
 
 
-    def set_player_id(self,serial_number_received : int ,id : str): 
-        self._palyer_liste ["j" + id] = serial_number_received
+    def set_player_id(self,serial_number : str ,id : str): 
+        self._palyer_liste ["j" + id] = serial_number
         radio.on()
         while True:
-            radio.send(str(serial_number_received)+":"+"j"+str(id)) 
-            reception = radio.receive()
-            if reception[len(reception)-1] == id and reception[0] == "o" and reception[1] == "k":
-                radio.off()
-                break
-            sleep(50)
+            radio.send(str(serial_number)+":"+"j"+str(id)) 
+            radio.off()
+            break
 
 
     def ste_answer_mode(self):
@@ -46,13 +43,17 @@ class Master_card:
             answer = radio.receive()
             if answer[0] in ["A", "B", "C", "D"] :
                 self.player_answer_list["j"+str(answer[len(answer)-1])] = answer[0]
-                radio.send("ok:j"+str(answer[len(answer)-1]))
                 radio.off()
 
     def get_player_answer_liste(self):
-        return self.player_answer_list
+        uart.init(baudrate=115200, bits=8, parity=None, stop=1)
+        uart.write(self.player_answer_list)
     
     def send_corrections_answer(self,player_answer_list_corrections):
         for key in player_answer_list_corrections:
             radio.send(str(key)+":"+str(player_answer_list_corrections[key]))
                 
+
+
+if __name__ == "__main__":
+    pass
