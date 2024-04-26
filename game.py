@@ -1,15 +1,16 @@
-import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import *
 from ttkbootstrap import Style
-from master_card_program import Master_card
-from Database import Database
+#from master_card_program import Master_card
+#from Database import Database
 #BY joshua LERAS IRIARTE
 class Game():
     def __init__(self):
-        self.Card_Master = Master_card()
-        self.Database_quizz = Database()
+        #self.Card_Master = Master_card()
+        #self.Database_quizz = Database()
         self.microbit_answer = []
+        self.n_series = [], 
         #test, waiting for those juicy SQL methods
+        self.nb_questions = 0  
         self.quiz_data = [
     {
         "question": "What is the capital of France?",
@@ -34,7 +35,7 @@ class Game():
 
 ]
         #Tkinter thingys
-        self.root = tk.Tk()
+        self.root = Tk()
         self.current_question = 0
         self.score = 0
         self.choice_btns = []
@@ -113,15 +114,40 @@ class Game():
                                 "Quiz Completed! Final score: {}/{}".format(self.score, len(self.quiz_data)))
             self.root.destroy()
     
+    def questions_modifier(self, nb_modifier):
+        self.nb_questions = nb_modifier
+        #PUT DATABASE METHOD HERE
+    def Solo(self):
+        self.solo_mode, self.Multiplayer = True, False
+        
+    def Multiplayer(self):
+        self.solo_mode, self.Multiplayer = False, True
+        
+    def Menu_quizz(self):
+        menu_obj = Menu(self.root)
+        
+        main_menu = Menu(menu_obj, tearoff=0)
+        main_menu.add_command(label ="Solo", command =Solo)
+        
+        questions_menu = Menu(menu_obj, tearoff=0)
+        for i in range(10):
+            questions_menu.add_command(label =str(i), command =questions_modifier(i))
             
+        menu_obj.add_cascade(label ="Menu", menu=main_menu)
+        menu_obj.add_cascade(label ="questions", menu=questions_menu)
+        
+        root.config(menu= menu)
     def run(self):
         """Run the quizz"""
+        #Tkinter parameters
         print(self.quiz_data)
         self.root.title("Quiz App")
         self.root.geometry("600x500")
         style = Style(theme="flatly")
-
+        self.root.resizable(height = True, width = True)
         self.qs_label.pack(pady=10)
+        
+        
 # Configure the font size for the question and choice buttons
         style.configure("TLabel", font=("Helvetica", 20))
         style.configure("TButton", font=("Helvetica", 16))
