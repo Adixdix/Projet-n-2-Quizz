@@ -1,4 +1,5 @@
-from tkinter import *
+import tkinter as tk
+from tkinter import messagebox, ttk, Menu
 from ttkbootstrap import Style
 #from master_card_program import Master_card
 #from Database import Database
@@ -35,7 +36,7 @@ class Game():
 
 ]
         #Tkinter thingys
-        self.root = Tk()
+        self.root = tk.Tk()
         self.current_question = 0
         self.score = 0
         self.choice_btns = []
@@ -117,26 +118,30 @@ class Game():
     def questions_modifier(self, nb_modifier):
         self.nb_questions = nb_modifier
         #PUT DATABASE METHOD HERE
-    def Solo(self):
-        self.solo_mode, self.Multiplayer = True, False
         
-    def Multiplayer(self):
-        self.solo_mode, self.Multiplayer = False, True
+    def solo(self):
+        self.solo_mode, self.multiplayer = True, False
         
-    def Menu_quizz(self):
+    def multiplayer_mode(self):
+        self.solo_mode, self.multiplayer = False, True
+        
+    def menu_quizz(self):
         menu_obj = Menu(self.root)
         
         main_menu = Menu(menu_obj, tearoff=0)
-        main_menu.add_command(label ="Solo", command =Solo)
+        main_menu.add_command(label ="Solo", command =self.solo())
+        main_menu.add_command(label ="multiplayer", command =self.multiplayer_mode())
         
         questions_menu = Menu(menu_obj, tearoff=0)
         for i in range(10):
-            questions_menu.add_command(label =str(i), command =questions_modifier(i))
+            questions_menu.add_command(label =str(i), command =self.questions_modifier(i))
             
         menu_obj.add_cascade(label ="Menu", menu=main_menu)
         menu_obj.add_cascade(label ="questions", menu=questions_menu)
         
-        root.config(menu= menu)
+        self.root.config(menu= menu_obj)
+        
+        
     def run(self):
         """Run the quizz"""
         #Tkinter parameters
@@ -146,7 +151,8 @@ class Game():
         style = Style(theme="flatly")
         self.root.resizable(height = True, width = True)
         self.qs_label.pack(pady=10)
-        
+#Create the menu above
+        self.menu_quizz()
         
 # Configure the font size for the question and choice buttons
         style.configure("TLabel", font=("Helvetica", 20))
