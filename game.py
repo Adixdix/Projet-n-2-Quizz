@@ -67,7 +67,7 @@ class Game():
         )
         
         
-    def show_question(self):
+    def show_question(self)->None:
         """Display the current question and the answer"""
     # Get the current question from the quiz_data list
         question = self.quiz_data[self.current_question]
@@ -84,7 +84,7 @@ class Game():
         self.next_btn.config(state="disabled")
     
     
-    def check_answer(self,choice):
+    def check_answer(self,choice)->None:
         """Check if correct answer"""
     # Get the current question from the quiz_data list
         question = self.quiz_data[self.current_question]
@@ -105,7 +105,7 @@ class Game():
         self.next_btn.config(state="normal")
     
     
-    def next_question(self):
+    def next_question(self)->None:
         """Pass to the next question until the end"""
         self.current_question +=1
 
@@ -118,17 +118,21 @@ class Game():
                                 "Quiz Completed! Final score: {}/{}".format(self.score, len(self.quiz_data)))
             self.root.destroy()
     
-    def questions_modifier(self, nb_modifier):
+    def questions_modifier(self, nb_modifier:int)->None:
+        """Replace the total question numbers"""
         self.nb_questions = nb_modifier
         #PUT DATABASE METHOD HERE
         
-    def solo(self):
+    def solo(self)->None:
+        """Set the mode to solo, enable only one player"""
         self.solo_mode, self.multiplayer = True, False
         
-    def multiplayer_mode(self):
+    def multiplayer_mode(self)->None:
+        """Set the game to multiplayer and enable new player"""
         self.solo_mode, self.multiplayer = False, True
         
-    def menu_quizz(self):
+    def menu_quizz(self)->None:
+        """Create the tab above the window"""
         menu_obj = Menu(self.root)
         
         main_menu = Menu(menu_obj, tearoff=0)
@@ -145,7 +149,7 @@ class Game():
         self.root.config(menu= menu_obj)
         
         
-    def run(self):
+    def run(self)->None:
         """Run the quizz"""
         #Tkinter parameters
         print(self.quiz_data)
@@ -201,4 +205,3 @@ class Game():
         self.root.mainloop()
 game = Game()
 game.run()
-
