@@ -34,4 +34,23 @@ class Database():
                 cursor.execute(sql)
 
             self.connection.commit()
-
+            
+    def get_question(difficulty=None, theme=None):
+        '''Returns a random question from the database
+        in a dictionnary using the following structure :
+        
+        {
+        "question": "What is the capital of France?",
+        "choices": ["Paris", "London", "Berlin", "Madrid"],
+        "answer": "Paris"
+        }'''
+        # TODO
+            
+            
+    def get_questions(n, difficulty=None, theme=None):
+        '''Returns n questions from the database in a LIST of DICTIONNARIES
+        using the same structure as the 'get_question' function'''
+        list_of_questions = []
+        # TODO
+        
+        
