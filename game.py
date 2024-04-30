@@ -4,6 +4,9 @@ from ttkbootstrap import Style
 #from master_card_program import Master_card
 #from Database import Database
 #BY joshua LERAS IRIARTE
+
+#MAIN BUG TO FIXE :
+#-button "NEXT" refuse to work
 class Game():
     def __init__(self):
         #self.Card_Master = Master_card()
