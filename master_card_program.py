@@ -1,4 +1,4 @@
-from microbit import uart
+from microbit import uart, sleep
 import radio
 
 
@@ -46,8 +46,11 @@ class Master_card:
                 radio.off()
 
     def get_player_answer_liste(self):
-        uart.init(baudrate=115200, bits=8, parity=None, stop=1)
-        uart.write(self.player_answer_list)
+        dico = {"A":1,"B":2,"C":3,"D":4}
+        for index in range(len(self.player_answer_list)):
+            self.get_player_answer_liste[index] = dico[self.get_player_answer_liste[index]]
+        uart.init(baudrate=115200, bits=8)
+        uart.write(self.get_player_answer_liste)
     
     def send_corrections_answer(self,player_answer_list_corrections):
         for key in player_answer_list_corrections:
@@ -56,4 +59,7 @@ class Master_card:
 
 
 if __name__ == "__main__":
-    pass
+    teste = Master_card()
+    while True:
+        sleep(500)
+        teste.get_player_answer_liste()
