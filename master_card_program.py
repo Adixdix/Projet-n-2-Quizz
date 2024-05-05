@@ -41,7 +41,6 @@ class Master_card:
         radio.off() # Disables the radio module
         self.get_answer()   # Waiting for player responses
 
-<<<<<<< HEAD
     def get_answer(self,time_out = 100):
         """Receives and records player responses."""
         radio.on()  # Activate the radio module. 
@@ -50,31 +49,6 @@ class Master_card:
             if answer[0] in ["A", "B", "C", "D"] :  # Checks if the answer is a valid letter and saves it with the player ID.
                 self.player_answer_list["j"+str(answer[len(answer)-1])] = answer[0]
         radio.off() # Disables the radio module
-=======
-    def set_answer_mode(self):
-        radio.on()
-        for joueur in range(len(self._palyer_liste)):
-            radio.send("go reply"+":"+"j"+str(joueur))
-        radio.off()
-
-
-    def get_answer(self,time_out : int) -> dict:
-        radio.on()  
-        for _ in range(time_out):
-            answer = radio.receive()
-            if answer[0] in ["A", "B", "C", "D"] :
-                radio.off()
-                self.player_answer_list["j"+str(answer[len(answer)-1])] = answer[0]
-               
-
-    def get_player_answer_liste(self):
-        return self.player_answer_list
-
-    
-    def send_corrections_answer(self,player_answer_list_corrections):
-        for key in player_answer_list_corrections:
-            radio.send(str(key)+":"+str(player_answer_list_corrections[key]))
->>>>>>> 7c3be0b2fae6c20f350287ca6e52f2137d69fd64
                 
     def send_player_answer_list(self):
         """Sends the list of player responses via UART."""
