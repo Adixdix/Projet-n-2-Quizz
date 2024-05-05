@@ -2,8 +2,6 @@
 from microbit import display, Image, button_a, button_b # Module to interact with the micro:bit.
 import radio    # Module for radio communication between micro:bit.
 import machine  # Module for access to micro:bit hardware.
-import random   # Module pour générer des nombres aléatoires.
-
 
 class Player_card:
     """This class represents the player card that communicates with other micro:bits via radio."""
@@ -16,10 +14,9 @@ class Player_card:
     def get_serial_number(self):
         """Gets the unique serial number of the micro:bit."""
         self.my_serial_number = ''.join([hex(n)[2:] if len(hex(n)) == 4 else '0'+hex(n)[2:] for n in list( machine.unique_id())])        
-        # Obtient le numéro de série unique et le convertit en chaîne hexadécimale.
+        # Gets the unique serial number and converts it to a hexadecimal string.
         return self.my_serial_number
         
-
     def send_serial_number(self) -> str:
         """Sends the unique serial number via radio and waits for confirmation of receipt."""
         radio.on()  # Activate the radio module.
@@ -30,9 +27,9 @@ class Player_card:
                 id_receive = "" # Initialize the string to store the received ID.
                 for index in range(len(self.my_serial_number)):
                     id_receive = id_receive + id[index] # Get the received ID.
-                if self.my_serial_number == id_receive: # Vérifie si l'ID reçu correspond au numéro de série de ce micro:bit.
-                    self.id_player = "j"+str(id[len(id)])   # Attribue un identifiant unique au joueur.
-                    radio.off() # Désactive le module radio.
+                if self.my_serial_number == id_receive: # Checks if the received ID matches the serial number of this micro:bit.
+                    self.id_player = "j"+str(id[len(id)])   # Assigns a unique ID to the player.
+                    radio.off() # Disables the radio module.
                     break
 
     def waiting(self):
@@ -46,20 +43,19 @@ class Player_card:
             if mode[len(mode)] == self.id_player[1] and str(mode_) == "go reply":   # Checks if the received mode matches.
                 self.response_mode(self.different_answer)   # Starts reply mode.
 
-
     def response_mode(self,different_answer):
             """Handles response mode where the player can choose a response and send it via radio."""
             index = 0   # Initializes the index to browse possible answers.
             while True:
                 if button_a.was_pressed():
-                    display.show(different_answer[index % len(different_answer)])   # Affiche la réponse sélectionnée. 
-                    index += 1  # Passe à la réponse suivante.
+                    display.show(different_answer[index % len(different_answer)])   # Displays the selected answer.
+                    index += 1  # Move to the next response
                     index = index % 4   # Ensures the index remains within the range of possible answers.
                 if button_b.was_pressed():
                     display.show(Image.YES, wait=True)  # Shows a visual confirmation that the response has been sent 
                     radio.on()  # Activate the radio module.
                     radio.send(str(different_answer[index-1])+":"+str(self.id_player))  # Sends selected response and player ID via radio.
-                    radio.off() # Désactive le module radio.
+                    radio.off() # Disables the radio module.
                     break   # Exits the loop.
 
 player = Player_card()  # Creates an instance of the Player_card class.
