@@ -1,3 +1,4 @@
+# Importing the necessary libraries
 import serial   # Module for serial communication.
 import serial.tools.list_ports  # Module for the list of available serial ports.
 import json # Module for processing JSON data
