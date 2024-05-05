@@ -1,4 +1,4 @@
-# Importing the necessary libraries.
+# Importing the necessary libraries, written by AdamH
 from microbit import display, Image, button_a, button_b # Module to interact with the micro:bit.
 import radio    # Module for radio communication between micro:bit.
 import machine  # Module for access to micro:bit hardware.
