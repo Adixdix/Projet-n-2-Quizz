@@ -3,12 +3,8 @@ from microbit import display, Image, button_a, button_b # Module to interact wit
 import radio    # Module for radio communication between micro:bit.
 import machine  # Module for access to micro:bit hardware.
 
-<<<<<<< HEAD
 class Player_card:
     """This class represents the player card that communicates with other micro:bits via radio."""
-=======
-class Player_card:       
->>>>>>> 7c3be0b2fae6c20f350287ca6e52f2137d69fd64
     def __init__(self) -> None:
         """Initializes the player card."""
         self.different_answer = ["A", "B", "C", "D"]    # List of possible answers.
@@ -56,7 +52,6 @@ class Player_card:
                     index += 1  # Move to the next response
                     index = index % 4   # Ensures the index remains within the range of possible answers.
                 if button_b.was_pressed():
-<<<<<<< HEAD
                     display.show(Image.YES, wait=True)  # Shows a visual confirmation that the response has been sent 
                     radio.on()  # Activate the radio module.
                     radio.send(str(different_answer[index-1])+":"+str(self.id_player))  # Sends selected response and player ID via radio.
@@ -67,14 +62,3 @@ player = Player_card()  # Creates an instance of the Player_card class.
 player.send_serial_number() # Sends the unique serial number and waits for confirmation of receipt.
 player.waiting()# Wait for response mode start signal.
 
-=======
-                    display.show(Image.YES, wait=True)
-                    print(different_answer[index-1])#Attention a enlever a la fin 
-                    radio.on()
-                    radio.send(str(different_answer[index-1])+":"+str(self.id_player)) 
-                    radio.off()
-
-
-Player1 = Player_card                        
-print(Player1.get_serial_number(Player1))      #Teste a enlever a la fin.
->>>>>>> 7c3be0b2fae6c20f350287ca6e52f2137d69fd64
