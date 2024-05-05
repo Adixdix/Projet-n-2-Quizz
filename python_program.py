@@ -27,7 +27,7 @@ class CommunicationMicrobit:
     def open_connection(self):
         """Opens the serial connection with the micro:bit."""
         port_opened = False # Indicates whether the port was opened successfully.
-        error_occurred = False  # Indique s'il y a eu une erreur lors de l'ouverture du port.
+        error_occurred = False  # Indicates if there was an error opening the port.
         self.port = serial.Serial(self.port, self.baudrate) # Attempting to open the serial port.
         if self.port.isOpen():  # Checking if the port is open.
             print("Connection established successfully")
