@@ -174,7 +174,7 @@ class Game():
         style.configure("TButton", font=("Helvetica", 16))
 
 # Create the choice buttons + microbit 
-        for i in range(4):
+        for i in range(len(self.quiz_data[self.current_question]['choices'])):
             button = ttk.Button(
                 self.root,
                 command=lambda i=i: (self.check_answer(i))
