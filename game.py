@@ -75,7 +75,7 @@ class Game():
 
     # Display the choices on the buttons
         choices = question["choices"]
-        for i in range(4):
+        for i in range(len(self.quiz_data[self.current_question]['choices'])):
             print(self.choice_btns)
             self.choice_btns[i].config(text=choices[i], state="normal") # Reset button state
 
