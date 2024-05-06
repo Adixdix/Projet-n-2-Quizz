@@ -13,7 +13,11 @@ class Game():
         self.microbit_answer = []
         self.n_series = []
         #test, waiting for those juicy SQL methods
-        self.nb_questions = 0  
+        self.nb_questions = 0
+        self.current_question = 0
+        self.score = 0
+        self.players_list = []
+        self.choice_btns = []
         self.quiz_data = [
     {
         "question": "What is the capital of France?",
@@ -39,9 +43,6 @@ class Game():
 ]
         #Tkinter thingys
         self.root = tk.Tk()
-        self.current_question = 0
-        self.score = 0
-        self.choice_btns = []
         self.qs_label = ttk.Label(
             self.root,
             anchor="center",
@@ -144,7 +145,10 @@ class Game():
         
         questions_menu = Menu(menu_obj, tearoff=0)
         for i in range(10):
-            questions_menu.add_command(label =str(i), command =lambda i=i :self.questions_modifier(i))
+            if i == self.nb_questions:
+                questions_menu.add_command(label =">"+str(i+1), command =lambda i=i :self.questions_modifier(i+1))
+            else:
+                questions_menu.add_command(label =str(i+1), command =lambda i=i :self.questions_modifier(i+1))
         
         #Create each tab
         menu_obj.add_cascade(label ="Menu", menu=main_menu)
@@ -170,7 +174,7 @@ class Game():
         style.configure("TButton", font=("Helvetica", 16))
 
 # Create the choice buttons + microbit 
-        for i in range(4):
+        for i in range(len(self.quiz_data[self.current_question]['choices'])):
             button = ttk.Button(
                 self.root,
                 command=lambda i=i: (self.check_answer(i))
