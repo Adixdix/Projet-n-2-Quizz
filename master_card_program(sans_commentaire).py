@@ -51,11 +51,11 @@ class Master_card:
         while True :
             message = uart.readall()
             if message!=None :
-                if message=="1":  
+                if str(message.decode('utf-8'))=='get_player':  
                     self.get_player()
-                if message=="2":
+                if str(message.decode('utf-8'))=='send_player_answer_list':
                     self.send_player_answer_list()
-                if message=="3":
+                if str(message.decode('utf-8'))=='set_answer_mode':
                     self.set_answer_mode()
 
 master = Master_card()
