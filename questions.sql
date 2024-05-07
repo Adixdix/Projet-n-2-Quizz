@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `question_id` int(10) unsigned NOT NULL,
   `correct_answer` varchar(100) NOT NULL,
   `wrong_answer_1` varchar(100) NOT NULL,
-  `wrong_answer_1` varchar(100) NOT NULL,
+  `wrong_answer_2` varchar(100) NOT NULL,
   `wrong_answer_3` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
