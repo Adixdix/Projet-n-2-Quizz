@@ -25,6 +25,31 @@ CREATE TABLE IF NOT EXISTS `questions` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
+-- Structure de la table `answers`
+--
+
+CREATE TABLE IF NOT EXISTS `answers` (
+  `question_id` int(10) unsigned NOT NULL,
+  `correct_answer` varchar(100) NOT NULL,
+  `wrong_answer_1` varchar(100) NOT NULL,
+  `wrong_answer_1` varchar(100) NOT NULL,
+  `wrong_answer_3` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(10) unsigned NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+
+--
 -- Contenu de la table `questions`
 --
 
@@ -33,6 +58,17 @@ INSERT INTO `questions` (`question_id`, `question_label`, `question_type`, `diff
 (4, 'Quelle est la traduction de "loathsome" ?', 'Langues', 3),
 (3, 'Quelle est la valeur de x si 4x - 2 = 6 ?', 'Maths', 1),
 (2, 'Quelle est la taille de la Tour Eiffel ?', 'Histoire', 3);
+
+--
+-- Contenu de la table `answers`
+--
+
+INSERT INTO `answers` (`question_id`, `correct_answer`, `wrong_answer_1`, `wrong_answer_2`, `wrong_answer_3`) VALUES
+(1, 'Ankara', 'Istanbul', 'Balayra', 'Edirne'),
+(4, 'détéstable', 'adorable', 'fainéant', 'logique'),
+(3, '2', '4', '5', '0,5'),
+(2, '330', '250', '420', '270');
+
 
 --
 -- Index pour les tables exportées
