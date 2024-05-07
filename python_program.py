@@ -3,7 +3,7 @@ import serial   # Module for serial communication.
 import serial.tools.list_ports  # Module for the list of available serial ports.
 import json # Module for processing JSON data
 
-class Communication_Microbit:
+class CommunicationMicrobit:
     """This class handles communication with a micro:bit via a serial port."""
     VID_MICROBIT = 0x0D28  #the VID value of the micro:bit
     PID_MICROBIT = 0x0204  #the PID value of the micro:bit
@@ -69,12 +69,13 @@ class Communication_Microbit:
 
     def get_player(self):
         """Allows you to add a player."""
-        self.port.write(get_player.encode('utf-8'))
-        
-    def send_player_answer_list(self):
+        self.port.write(b'1')
+
+    def send_player_answer_list(self) -> dict:
         """Allows you to ask the master microbit card to send the list of responses."""
-        self.port.write(send_player_answer_list.encode('utf-8'))
+        self.port.write(b'2')
+        return self.receive_player_answer_list()
 
     def set_answer_mode_player(self):
         """Allows you to switch the microbit player to response mode."""
-        self.port.write(set_answer_mode_player.encode('utf-8'))
+        self.port.write(b'3')

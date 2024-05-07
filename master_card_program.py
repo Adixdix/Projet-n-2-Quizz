@@ -64,11 +64,11 @@ class Master_card:
         while True :
             message = uart.readall()    # Reads commands.
             if message != None :
-                if str(message.decode('utf-8'))=='get_player': 
+                if message == "1":  
                     self.get_player()   # Receives player ID.
-                if str(message.decode('utf-8'))=='send_player_answer_list':
+                if message == "2":
                     self.send_player_answer_list()  # Sends the list of player response.
-                if str(message.decode('utf-8'))=='set_answer_mode':
+                if message == "3":
                     self.set_answer_mode()  # Starts response mode for players.
 
         
