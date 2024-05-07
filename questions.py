@@ -12,7 +12,7 @@ class Database():
         
     def _add_question(self, label: str, question_type: str, difficulty: int, correct_answer: str, wrong1: str, wrong2: str, wrong3: str): 
         '''Adds a question in the database. It automatically updates both the "questions" and "answers" tables.'''        
-        with self.connection:
+        open self.connection:
             with self.connection.cursor() as cursor:
                 sql = "SELECT question_id FROM questions"
                 cursor.execute(sql)
