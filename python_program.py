@@ -48,10 +48,11 @@ class CommunicationMicrobit:
         """Receives and processes the list of player responses sent by the micro:bit."""
         answer_list_invalid = ""    # Initialize a string to store the list of responses.
         index = 0
-        message = self.port.readall() # Reading the micro:bit message.
-        print(message)
-        if message != None:
+        if self.port.any():
+            message = self.port.readall() # Reading the micro:bit message.
             print(message)
+            if message != None:
+                print(message)
             """while message[index] != "M":
                 answer_list_invalid = answer_list_invalid + message[index]
                 index += 1
@@ -76,6 +77,7 @@ class CommunicationMicrobit:
     def send_player_answer_list(self) -> dict:
         """Allows you to ask the master microbit card to send the list of responses."""
         self.port.write(b'2')
+        sleep(600)
         return self.receive_player_answer_list()
 
     def set_answer_mode_player(self):

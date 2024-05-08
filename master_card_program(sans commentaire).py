@@ -45,7 +45,10 @@ class Master_card:
             answer=radio.receive()
             if answer!=None and answer[0] in ["A","B","C","D"]:
                 self.player_answer_list["j"+str(answer[len(answer)-1])]=answer[0]
-            return self.player_answer_list
+            else:
+                time_out=time_out-1
+                sleep(255)
+        return self.player_answer_list
                 
     def send_player_answer_list(self):
         uart.init(baudrate=115200, bits=8)
