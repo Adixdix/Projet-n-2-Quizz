@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, Menu
 from ttkbootstrap import Style
-from quizz_v3 import Game
+from game import Game
 from python_program import CommunicationMicrobit
 #BY JOSHUA LERAS IRIARTE
 
