@@ -24,7 +24,6 @@ class CommunicationMicrobit:
                 return p.device # Returns the serial port name if the micro:bit is found.
         return None # Returns None if the micro:bit is not found.
     
-    
     def open_connection(self):
         """Opens the serial connection with the micro:bit."""
         port_opened = False # Indicates whether the port was opened successfully.
@@ -50,18 +49,15 @@ class CommunicationMicrobit:
         index = 0
         if self.port.any():
             message = self.port.readall() # Reading the micro:bit message.
-            print(message)
             if message != None:
-                print(message)
-            """while message[index] != "M":
-                answer_list_invalid = answer_list_invalid + message[index]
-                index += 1
-            answer_list_valid = answer_list_invalid.replace("'", "\"")  # Replace apostrophes with quotes for JSON format.
-            self.answer_list = json.loads(answer_list_valid)    # Converting JSON string to Python dictionary.
-            return self.letter_to_index_transformation()    # Transformation of letters into numerical indexes.
-        else:
-            return "No connection"
-            """
+                while message[index] != "M":
+                    answer_list_invalid = answer_list_invalid + message[index]
+                    index += 1
+                answer_list_valid = answer_list_invalid.replace("'", "\"")  # Replace apostrophes with quotes for JSON format.
+                self.answer_list = json.loads(answer_list_valid)    # Converting JSON string to Python dictionary.
+                return self.letter_to_index_transformation()    # Transformation of letters into numerical indexes.
+            else:
+                return "No connection"
                 
     def letter_to_index_transformation(self) -> dict:
         """Transforms the letters of player responses into numerical indexes."""
@@ -77,7 +73,6 @@ class CommunicationMicrobit:
     def send_player_answer_list(self) -> dict:
         """Allows you to ask the master microbit card to send the list of responses."""
         self.port.write(b'2')
-        sleep(600)
         return self.receive_player_answer_list()
 
     def set_answer_mode_player(self):

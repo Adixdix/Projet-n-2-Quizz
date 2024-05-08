@@ -51,6 +51,7 @@ class Player_card:
 
     def response_mode(self):
             """Handles response mode where the player can choose a response and send it via radio."""
+            display.clear()
             index = 0   # Initializes the index to browse possible answers.
             while True:
                 if button_a.was_pressed():
@@ -59,9 +60,7 @@ class Player_card:
                     index = index % 4   # Ensures the index remains within the range of possible answers.
                 if button_b.was_pressed():
                     display.show(Image.YES, wait=True)  # Shows a visual confirmation that the response has been sent 
-                    radio.on()  # Activate the radio module.
                     radio.send(str(self.different_answer[index-1])+":"+str(self.id_player))  # Sends selected response and player ID via radio.
-                    radio.off() # Disables the radio module.
                     break   # Exits the loop.
 
 player = Player_card()  # Creates an instance of the Player_card class.

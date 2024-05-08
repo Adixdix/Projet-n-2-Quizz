@@ -26,7 +26,6 @@ class Player_card:
                     else:
                         break
                 if self.my_serial_number == id_receive:
-                    print("ok")
                     self.id_player = "j"+str(id[len(id)-1])
                     radio.off()
                     break
@@ -41,7 +40,6 @@ class Player_card:
                 for index in range(8):
                     mode_= mode_+mode[index]
                 if mode[len(mode)-1] == self.id_player[1] and str(mode_) == "go reply":
-                    print("ok")
                     self.response_mode()
 
     def response_mode(self):
@@ -55,7 +53,6 @@ class Player_card:
             if button_b.was_pressed():
                 display.show(Image.YES, wait=True)
                 radio.send(str(self.different_answer[index-1])+":"+str(self.id_player))
-                print("repose envoier")
                 break
 
 player = Player_card()                        
