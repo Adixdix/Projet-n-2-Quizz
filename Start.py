@@ -3,9 +3,17 @@ from tkinter import ttk, Toplevel
 from ttkbootstrap import Style
 from quizz_v3 import Game
 
+
+class New_window(Toplevel):
+     
+    def __init__(self, root=None):
+         
+        super().__init__(root = root)
+        self.title("New Window")
+        self.geometry("200x200")
+
         
 class Start():
-        """Set a main menu before playing the next window"""
     def __init__(self):
         self.root = tk.Tk()
         self.style = Style(theme="flatly")
@@ -27,7 +35,7 @@ class Start():
         self.play_btn = ttk.Button(
             self.root,
             text = "PLAY",
-            command = lambda: Game(self.root)
+            command = lambda: Game(self.root).run()
         )
         self.add_player = ttk.Button(
             self.root,
