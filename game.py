@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, ttk, Menu, Toplevel
+from tkinter import messagebox, ttk, Toplevel
 from ttkbootstrap import Style
 #from master_card_program import Master_card
 #from Database import Database
@@ -8,41 +8,24 @@ from ttkbootstrap import Style
 #MAIN BUG TO FIXE :
 class Game(Toplevel):
     """Create a quizz with x questions and y players"""
-    def __init__(self, master = None):
+    def __init__(self, nb_questions, master = None):
         super().__init__(master = master)
         #self.Card_Master = Master_card()²²²²²²
-        #self.Database_quizz = Database()
+        self.Database_quizz = Database()
         self.microbit_answer = []
         self.n_series = []
-        #test, waiting for those juicy SQL methods
-        self.nb_questions = 0
+        #test, waiting for those juicy SQL methods 
+        self.nb_questions =  nb_questions
         self.current_question = 0
         self.score = 0
         self.players_list = []
         self.choice_btns = []
-        self.quiz_data = [
-    {
-        "question": "What is the capital of France?",
-        "choices": ["Paris", "London", "Berlin", "Madrid"],
-        "answer": "Paris"
-    },
-    {
-        "question": "What is the largest planet in our solar system?",
-        "choices": ["Jupiter", "Saturn", "Mars", "Earth"],
-        "answer": "Jupiter"
-    },
-    {
-        "question": "What is the chemical symbol for gold?",
-        "choices": ["Go", "Au", "Ag", "Gd"],
-        "answer": "Au"
-    },
-    {
-        "question": "Which country is known as the 'Land of the Rising Sun'?",
-        "choices": ["China", "Japan", "South Korea", "Thailand"],
-        "answer": "Japan"
-    }
-
-]
+        self.quiz_data = self.Database_quizz.get_questions(self.nb_questions)
+        #[{
+        #"question": "What is the capital of France?",
+        #"choices": ["Paris", "London", "Berlin", "Madrid"],
+        #"answer": "Paris"
+    #}]
         #Tkinter thingys
         self.qs_label = ttk.Label(
             self,
@@ -119,44 +102,6 @@ class Game(Toplevel):
             messagebox.showinfo("Quiz Completed",
                                 "Quiz Completed! Final score: {}/{}".format(self.score, len(self.quiz_data)))
             self.destroy()
-    
-    def questions_modifier(self, nb_modifier:int)->None:
-        """Replace the total question numbers"""
-        self.nb_questions = nb_modifier
-        print("questions:", nb_modifier)
-        #PUT DATABASE METHOD HERE
-        
-    def solo(self)->None:
-        """Set the mode to solo, enable only one player"""
-        self.solo_mode, self.multiplayer = True, False
-        
-    def multiplayer_mode(self)->None:
-        """Set the game to multiplayer and enable new player"""
-        self.solo_mode, self.multiplayer = False, True
-        
-    def menu_quizz(self)->None:
-        """Create the tab above the window"""
-        #create menu
-        menu_obj = Menu(self)
-        
-        #Add command to tab
-        main_menu = Menu(menu_obj, tearoff=0)
-        main_menu.add_command(label ="Solo", command =lambda :self.solo())
-        main_menu.add_command(label ="multiplayer", command =lambda :self.multiplayer_mode())
-        
-        questions_menu = Menu(menu_obj, tearoff=0)
-        for i in range(10):
-            if i == self.nb_questions:
-                questions_menu.add_command(label =">"+str(i+1), command =lambda i=i :self.questions_modifier(i+1))
-            else:
-                questions_menu.add_command(label =str(i+1), command =lambda i=i :self.questions_modifier(i+1))
-        
-        #Create each tab
-        menu_obj.add_cascade(label ="Menu", menu=main_menu)
-        menu_obj.add_cascade(label ="questions", menu=questions_menu)
-        
-        #update
-        self.config(menu= menu_obj)
         
     def window_parameters(self)->None:
         """Configure the main window parameters"""
@@ -178,8 +123,6 @@ class Game(Toplevel):
         self.define_style()
         
         self.qs_label.pack(pady=10)
-#Create the menu above
-        self.menu_quizz()
 
 # Create the choice buttons + microbit 
         for i in range(len(self.quiz_data[self.current_question]['choices'])):
