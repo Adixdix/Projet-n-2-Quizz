@@ -2,14 +2,14 @@ import tkinter as tk
 from tkinter import ttk, Menu
 from ttkbootstrap import Style
 from quizz_v3 import Game
-from master_card_program import Master_card
+from python_program import CommunicationMicrobit
 #BY JOSHUA LERAS IRIARTE
 
 class Start():
     def __init__(self):
         self.root = tk.Tk()
         self.style = Style(theme="flatly")
-        self.microbits = Master_card()
+        self.microbits = CommunicationMicrobit()
         self.window_list = []
         self.player_list = []
         self.nb_questions = 0 #default total questions
