@@ -6,10 +6,10 @@ from ttkbootstrap import Style
 #BY joshua LERAS IRIARTE
 
 #MAIN BUG TO FIXE :
-class Game():
+class Game(Toplevel):
     """Create a quizz with x questions and y players"""
-    def __init__(self):
-        self.root = tk.Tk()
+    def __init__(self, master = None):
+        super().__init__(master = master)
         #self.Card_Master = Master_card()²²²²²²
         #self.Database_quizz = Database()
         self.microbit_answer = []
@@ -45,24 +45,24 @@ class Game():
 ]
         #Tkinter thingys
         self.qs_label = ttk.Label(
-            self.root,
+            self,
             anchor="center",
             wraplength=500,
             padding=10
         )
         self.feedback_label = ttk.Label(
-            self.root,
+            self,
             anchor="center",
             padding=10
         )
         self.score_label = ttk.Label(
-            self.root,
+            self,
             text="Score: 0/{}".format(len(list(self.quiz_data))),
             anchor="center",
             padding=10
         )
         self.next_btn = ttk.Button(
-            self.root,
+            self,
             text="Next",
             state="disabled"
         )
@@ -118,7 +118,7 @@ class Game():
         # If all questions have been answered, display the final score and end the quiz
             messagebox.showinfo("Quiz Completed",
                                 "Quiz Completed! Final score: {}/{}".format(self.score, len(self.quiz_data)))
-            self.root.destroy()
+            self.destroy()
     
     def questions_modifier(self, nb_modifier:int)->None:
         """Replace the total question numbers"""
@@ -137,7 +137,7 @@ class Game():
     def menu_quizz(self)->None:
         """Create the tab above the window"""
         #create menu
-        menu_obj = Menu(self.root)
+        menu_obj = Menu(self)
         
         #Add command to tab
         main_menu = Menu(menu_obj, tearoff=0)
@@ -156,13 +156,13 @@ class Game():
         menu_obj.add_cascade(label ="questions", menu=questions_menu)
         
         #update
-        self.root.config(menu= menu_obj)
+        self.config(menu= menu_obj)
         
     def window_parameters(self)->None:
         """Configure the main window parameters"""
-        self.root.title("Quiz App")
-        self.root.geometry("600x500")
-        self.root.resizable(height = True, width = True)
+        self.title("Quiz App")
+        self.geometry("600x500")
+        self.resizable(height = True, width = True)
         
     def define_style(self)->None:
         """Configure the font size for the question and choice buttons"""
@@ -184,7 +184,7 @@ class Game():
 # Create the choice buttons + microbit 
         for i in range(len(self.quiz_data[self.current_question]['choices'])):
             button = ttk.Button(
-                self.root,
+                self,
                 command=lambda i=i: (self.check_answer(i))
             )
             button.pack(pady=5)
@@ -203,7 +203,7 @@ class Game():
 
 # Create the next button
         self.next_btn = ttk.Button(
-            self.root,
+            self,
             text="Next",
             command=lambda :self.next_question(),
             state="disabled"
@@ -215,6 +215,4 @@ class Game():
 
 # Show the first question
         self.show_question()
-
-# Start the main event loop
-        self.root.mainloop()
+        
