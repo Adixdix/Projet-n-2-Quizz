@@ -48,10 +48,11 @@ class CommunicationMicrobit:
         """Receives and processes the list of player responses sent by the micro:bit."""
         answer_list_invalid = ""    # Initialize a string to store the list of responses.
         index = 0
-        message = self.port.readline().decode('utf-8')  # Reading the micro:bit message.
+        message = self.port.readall() # Reading the micro:bit message.
+        print(message)
         if message != None:
             print(message)
-            while message[index] != "M":
+            """while message[index] != "M":
                 answer_list_invalid = answer_list_invalid + message[index]
                 index += 1
             answer_list_valid = answer_list_invalid.replace("'", "\"")  # Replace apostrophes with quotes for JSON format.
@@ -59,6 +60,7 @@ class CommunicationMicrobit:
             return self.letter_to_index_transformation()    # Transformation of letters into numerical indexes.
         else:
             return "No connection"
+            """
                 
     def letter_to_index_transformation(self) -> dict:
         """Transforms the letters of player responses into numerical indexes."""
@@ -79,3 +81,5 @@ class CommunicationMicrobit:
     def set_answer_mode_player(self):
         """Allows you to switch the microbit player to response mode."""
         self.port.write(b'3')
+
+teste = CommunicationMicrobit()
