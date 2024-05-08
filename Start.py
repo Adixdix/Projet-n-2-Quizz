@@ -106,6 +106,3 @@ class Start():
         
         self.root.mainloop()
         
-test = Start()
-test.run()     
-        
