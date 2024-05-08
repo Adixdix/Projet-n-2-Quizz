@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, ttk, Menu
+from tkinter import messagebox, ttk, Menu, Toplevel
 from ttkbootstrap import Style
 #from master_card_program import Master_card
 #from Database import Database
@@ -7,7 +7,9 @@ from ttkbootstrap import Style
 
 #MAIN BUG TO FIXE :
 class Game():
+    """Create a quizz with x questions and y players"""
     def __init__(self):
+        self.root = tk.Tk()
         #self.Card_Master = Master_card()²²²²²²
         #self.Database_quizz = Database()
         self.microbit_answer = []
@@ -42,7 +44,6 @@ class Game():
 
 ]
         #Tkinter thingys
-        self.root = tk.Tk()
         self.qs_label = ttk.Label(
             self.root,
             anchor="center",
@@ -157,21 +158,28 @@ class Game():
         #update
         self.root.config(menu= menu_obj)
         
+    def window_parameters(self)->None:
+        """Configure the main window parameters"""
+        self.root.title("Quiz App")
+        self.root.geometry("600x500")
+        self.root.resizable(height = True, width = True)
+        
+    def define_style(self)->None:
+        """Configure the font size for the question and choice buttons"""
+        style = Style(theme="flatly")
+        style.configure("TLabel", font=("Helvetica", 20))
+        style.configure("TButton", font=("Helvetica", 16))
         
     def run(self)->None:
         """Run the quizz"""
         #Tkinter parameters
-        self.root.title("Quiz App")
-        self.root.geometry("600x500")
-        style = Style(theme="flatly")
-        self.root.resizable(height = True, width = True)
+        self.window_parameters()
+        
+        self.define_style()
+        
         self.qs_label.pack(pady=10)
 #Create the menu above
         self.menu_quizz()
-        
-# Configure the font size for the question and choice buttons
-        style.configure("TLabel", font=("Helvetica", 20))
-        style.configure("TButton", font=("Helvetica", 16))
 
 # Create the choice buttons + microbit 
         for i in range(len(self.quiz_data[self.current_question]['choices'])):
@@ -210,6 +218,3 @@ class Game():
 
 # Start the main event loop
         self.root.mainloop()
-        
-game = Game()
-game.run()
