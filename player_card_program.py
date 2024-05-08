@@ -1,5 +1,5 @@
 # Importing the necessary libraries, written by AdamH
-from microbit import display, Image, button_a, button_b # Module to interact with the micro:bit.
+from microbit import display, Image, button_a, button_b, sleep # Module to interact with the micro:bit.
 import radio    # Module for radio communication between micro:bit.
 import machine  # Module for access to micro:bit hardware.
 
@@ -23,10 +23,14 @@ class Player_card:
         while True:
             radio.send(str(self.my_serial_number))  # Send serial number.
             id = radio.receive()    # Wait for a message to be received
+            sleep(700)
             if id != None:
                 id_receive = "" # Initialize the string to store the received ID.
                 for index in range(len(self.my_serial_number)):
-                    id_receive = id_receive + id[index] # Get the received ID.
+                    if index < len(id):
+                       id_receive += id[index] 
+                    else:
+                        break
                 if self.my_serial_number == id_receive: # Checks if the received ID matches the serial number of this micro:bit.
                     self.id_player = "j"+str(id[len(id)])   # Assigns a unique ID to the player.
                     radio.off() # Disables the radio module.
@@ -35,26 +39,28 @@ class Player_card:
     def waiting(self):
         """Waits for response mode start signal."""
         radio.on()  # Activate the radio module.
+        mode_ = ""  # Initialize the string to store the received mode.
         while True:
             mode = radio.receive()  # Wait for start signal.
-            mode_ = ""  # Initialize the string to store the received mode.
-            for index in range(8):
-                mode_ =  mode_ + mode[index]    # Get received mode.
-            if mode[len(mode)] == self.id_player[1] and str(mode_) == "go reply":   # Checks if the received mode matches.
-                self.response_mode(self.different_answer)   # Starts reply mode.
+            sleep(700)
+            if mode != None:
+                for index in range(8):
+                    mode_ =  mode_ + mode[index]    # Get received mode.
+                if mode[len(mode)-1] == self.id_player[1] and str(mode_) == "go reply":   # Checks if the received mode matches.
+                    self.response_mode()   # Starts reply mode.
 
-    def response_mode(self,different_answer):
+    def response_mode(self):
             """Handles response mode where the player can choose a response and send it via radio."""
             index = 0   # Initializes the index to browse possible answers.
             while True:
                 if button_a.was_pressed():
-                    display.show(different_answer[index % len(different_answer)])   # Displays the selected answer.
+                    display.show(self.different_answer[index % len(self.different_answer)])   # Displays the selected answer.
                     index += 1  # Move to the next response
                     index = index % 4   # Ensures the index remains within the range of possible answers.
                 if button_b.was_pressed():
                     display.show(Image.YES, wait=True)  # Shows a visual confirmation that the response has been sent 
                     radio.on()  # Activate the radio module.
-                    radio.send(str(different_answer[index-1])+":"+str(self.id_player))  # Sends selected response and player ID via radio.
+                    radio.send(str(self.different_answer[index-1])+":"+str(self.id_player))  # Sends selected response and player ID via radio.
                     radio.off() # Disables the radio module.
                     break   # Exits the loop.
 
