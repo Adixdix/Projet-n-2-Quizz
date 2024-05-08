@@ -5,6 +5,7 @@ from quizz_v3 import Game
 
         
 class Start():
+        """Set a main menu before playing the next window"""
     def __init__(self):
         self.root = tk.Tk()
         self.style = Style(theme="flatly")
@@ -58,6 +59,7 @@ class Start():
         self.root.resizable(height = True, width = True)
         
     def run(self)->None:
+        """Run the main menu"""
         self.window_paramaters()
         
         self.position()
