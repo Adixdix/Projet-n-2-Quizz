@@ -173,7 +173,7 @@ class Game(Toplevel):
             time.sleep(1)
             num_of_secs -= 1
         
-    def run_solo(self)->None:
+    def run(self)->None:
         """Run the quizz"""
         self.window_parameters()
         
