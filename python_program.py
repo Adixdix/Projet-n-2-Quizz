@@ -78,5 +78,3 @@ class CommunicationMicrobit:
     def set_answer_mode_player(self):
         """Allows you to switch the microbit player to response mode."""
         self.port.write(b'3')
-
-teste = CommunicationMicrobit()
