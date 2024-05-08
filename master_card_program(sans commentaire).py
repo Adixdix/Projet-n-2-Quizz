@@ -1,4 +1,4 @@
-from microbit import uart,sleep,display
+from microbit import uart,sleep
 import radio
 
 class Master_card:
@@ -14,7 +14,7 @@ class Master_card:
             sleep(500)
             if serial_number_received!=None :
                 if serial_number_received in self._palyer_liste:
-                    return "le joueur est déja dans la partie"
+                    return "the player is already in the game"
                 else:
                     find = False
                     self.set_player_id(serial_number_received,str(len(self._palyer_liste)+1))

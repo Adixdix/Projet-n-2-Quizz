@@ -11,18 +11,20 @@ class Master_card:
 
     def get_player(self): 
         """Receives and records player ID."""
+        find = True
         radio.on()  # Activate the radio module
-        while True:
+        while find:
             serial_number_received = radio.receive()    # Waiting for a serial number to be received.
+            sleep(500)
             if serial_number_received != None :
                 #Checks if the received serial number is already in the player list.
-                for index in range(len(self._palyer_liste)):
-                    if serial_number_received == self._palyer_liste["j"+str(index)]:
-                        return None 
-                    else:
-                        self.set_player_id(serial_number_received,str(len(self._palyer_liste) + 1 ))
-                        radio.off()
-                        break
+                if serial_number_received in self._palyer_liste:
+                    return "the player is already in the game"
+                else:
+                    find = False
+                    self.set_player_id(serial_number_received,str(len(self._palyer_liste) + 1 ))
+                    radio.off()
+                    break
 
     def set_player_id(self,serial_number,id):
         """Associates an ID with a serial number and sends confirmation to the player.""" 
@@ -37,18 +39,21 @@ class Master_card:
         """Sends the signal to activate answer mode to all players."""
         radio.on()  # Activate the radio module.
         for joueur in self._palyer_liste:
-            radio.send("go reply"+":"+"j"+str(joueur))  # Sends the signal to each player.
-        radio.off() # Disables the radio module
+            for _ in range(2):
+                radio.send("go reply"+":"+"j"+str(joueur))  # Sends the signal to each player.
+                sleep(300)
         self.get_answer()   # Waiting for player responses
-
-    def get_answer(self,time_out = 100):
-        """Receives and records player responses."""
-        radio.on()  # Activate the radio module. 
-        for _ in range(time_out):
-            answer = radio.receive()    # Waits for a response to be received.
-            if answer[0] in ["A", "B", "C", "D"] :  # Checks if the answer is a valid letter and saves it with the player ID.
-                self.player_answer_list["j"+str(answer[len(answer)-1])] = answer[0]
         radio.off() # Disables the radio module
+
+    def get_answer(self,time_out = 1000):
+        """Receives and records player responses.""" 
+        while time_out>0 or len(self.player_answer_list)!=len(self._palyer_liste):
+            time_out=time_out-1
+            sleep(1000)
+            answer = radio.receive()    # Waits for a response to be received.
+            if answer!=None and answer[0] in ["A", "B", "C", "D"]  :  # Checks if the answer is a valid letter and saves it with the player ID.
+                self.player_answer_list["j"+str(answer[len(answer)-1])] = answer[0]
+            return self.player_answer_list
                 
     def send_player_answer_list(self):
         """Sends the list of player responses via UART."""
@@ -64,13 +69,13 @@ class Master_card:
         while True :
             message = uart.readall()    # Reads commands.
             if message != None :
-                if message == "1":  
+                if message == b'1':  
                     self.get_player()   # Receives player ID.
-                if message == "2":
+                if message == b'2':
                     self.send_player_answer_list()  # Sends the list of player response.
-                if message == "3":
+                if message == b'3':
                     self.set_answer_mode()  # Starts response mode for players.
 
-        
+
 master = Master_card()  # Creates an instance of the Master_card class.
 master.wating() # Wait for user commands via UART.      
