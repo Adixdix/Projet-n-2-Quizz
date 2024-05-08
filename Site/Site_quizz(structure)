@@ -148,6 +148,18 @@
                     <td></td>
                     <td></td>
                 </td>
+                <tr>
+                    <td>CommunicationMicrobit</td>
+                    <td>
+                        <td>find_microbit_port(self) -> str</td>
+                        <td>open_connection(self)</td>
+                        <td>close_connection(self)</td>
+                        <td>receive_player_answer_list(self) -> dict</td>
+                        <td>letter_to_index_transformation(self) -> dict</td>
+                        <td>get_player(self)</td>
+                        <td>send_player_answer_list(self) -> dict</td>
+                        <td>set_answer_mode_player(self)</td>
+                    </td>
             </tr>
         </table>
     </center>
