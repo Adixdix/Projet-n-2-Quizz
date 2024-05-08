@@ -186,8 +186,9 @@ class Game(Toplevel):
 # Show the first question
             self.show_question()
             
-#wait for players to answer and verify their answers        
-            self.players_answer = self.microbits.set_answer_mode()
+#wait for players to answer and verify their answers
+            self.microbits.set_answer_mode_player()
+            self.players_answer = self.microbits.send_player_answer_list()
         
         for player in self.players_answer:
             self.check_answer(self.players_answer[str(player), player])
