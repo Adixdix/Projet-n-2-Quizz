@@ -2,11 +2,14 @@ import tkinter as tk
 from tkinter import ttk, Menu
 from ttkbootstrap import Style
 from quizz_v3 import Game
-        
+from master_card_program import Master_card
+#BY JOSHUA LERAS IRIARTE
+
 class Start():
     def __init__(self):
         self.root = tk.Tk()
         self.style = Style(theme="flatly")
+        self.microbits = Master_card()
         self.window_list = []
         self.player_list = []
         self.nb_questions = 0 #default total questions
@@ -32,7 +35,7 @@ class Start():
         self.play_btn = ttk.Button(
             self.root,
             text = "PLAY",
-            command = lambda: Game(self.nb_questions, self.root).run()
+            command = lambda: Game(self.microbits, self.nb_questions, self.root).run()
         )
         self.add_player = ttk.Button(
             self.root,
@@ -42,6 +45,7 @@ class Start():
     
     def choose_player(self)->None:
         """Add a single player to the game"""
+        self.microbits.get_player()
         self.player_list.append(1)
         self.player_number.config(text=f"{len(self.player_list)} players")
     
