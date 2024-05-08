@@ -47,7 +47,6 @@
         <table> <!-- Permet de créer un tableau -->
             <caption><h3>Repartition des tâches :</h3><!-- le titre du tableau --></caption>
             <tr>
-                <th></th>
                 <th>
                     <h3>Class</h3>
                 </th>
@@ -59,22 +58,96 @@
                 </th>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Start</td>
+                <td>
+                    <td>choose_player(self)->None</td>
+                    <td>position(self)->None</td>
+                    <td>define_style(self)->None</td>
+                    <td>window_paramaters(self)->None</td>
+                    <td>questions_modifier(self, nb_modifier:int)->None</td>
+                    <td>menu_quizz(self)->None</td>
+                    <td>run(self)->None</td>
+                </td>
+                <td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Game</td>
+                <td>
+                    <td>show_question(self)->None</td>
+                    <td>update_score(self, player_answered = None )->None</td>
+                    <td>check_answer(self, choice, player = None)->None</td>
+                    <td>next_question(self)->None</td>
+                    <td> window_parameters(self)->None</td>
+                    <td>define_style(self)->None</td>
+                    <td>update_next_button(self)->None</td>
+                    <td>create_buttons(self)->None</td>
+                    <td>run(self)->None</td>
+                </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                <td>
+                </td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Master_Card</td>
+                <td>
+                    <td>get_player(self)</td>
+                    <td>set_player_id(self,serial_number,id)</td>
+                    <td>set_answer_mode(self)</td>
+                    <td>get_answer(self,time_out=1000)</td>
+                    <td>send_player_answer_list(self)</td>
+                    <td>wating(self)</td>
+                </td>
+                <td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </td>
+            </tr>
+            <tr>
+                <td>Player_card</td>
+                <td>
+                    <td>get_serial_number(self):</td>
+                    <td>send_serial_number(self) -> str</td>
+                    <td>waiting(self)</td>
+                    <td>response_mode(self)</td>
+                    
+                </td>
+                <td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </td>
+            </tr>
+            <tr>
+                <td>Database</td>
+                <td>
+                    <td> _add_question(self, label: str, question_type: str, difficulty: int, correct_answer: str, wrong1: str, wrong2: str, wrong3: str) -> None</td>
+                    <td>get_question(self, question_id: int = None, difficulty: int = None, theme: int = None) -> dict</td>
+                    <td>get_questions(self, n, difficulty=None, theme=None)</td>
+                </td>
+                <td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </td>
             </tr>
         </table>
     </center>
