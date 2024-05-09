@@ -14,7 +14,7 @@ class Users():
         self.password = temp.hexdigest()
         self.connection = pymysql.connect(host='nsijoliotcurie.fr',
                                     user='admin_user_Quiz2024',
-                                    password='Uy0*9za59)C3',
+                                    password=###HIDDEN###,
                                     database='admin_Quiz2024',
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
