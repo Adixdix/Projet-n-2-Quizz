@@ -63,6 +63,7 @@ class Player_card:
                     radio.send(str(self.different_answer[index-1])+":"+str(self.id_player))  # Sends selected response and player ID via radio.
                     break   # Exits the loop.
 
+
 player = Player_card()  # Creates an instance of the Player_card class.
 player.send_serial_number() # Sends the unique serial number and waits for confirmation of receipt.
 player.waiting()# Wait for response mode start signal.
