@@ -11,20 +11,17 @@ class Master_card:
 
     def get_player(self): 
         """Receives and records player ID."""
-        find = True
         radio.on()  # Activate the radio module
-        while find:
+        while True:
             serial_number_received = radio.receive()    # Waiting for a serial number to be received.
             sleep(500)
             if serial_number_received != None :
                 #Checks if the received serial number is already in the player list.
                 if serial_number_received in self._player_liste:
-                    return "the player is already in the game"
+                    return None
                 else:
-                    find = False
                     self.set_player_id(serial_number_received,str(len(self._player_liste) + 1 ))
                     radio.off()
-                    break
 
     def set_player_id(self,serial_number,id):
         """Associates an ID with a serial number and sends confirmation to the player.""" 
@@ -72,7 +69,7 @@ class Master_card:
                 if message == b'1':  
                     self.get_player()   # Receives player ID.
                 if message == b'2':
-                    self.send_player_answer_list()  # Sends the list of player response.
+                    self.send_player_answer_list()  # Sends the list of player response. -> dict
                 if message == b'3':
                     self.set_answer_mode()  # Starts response mode for players.
 
