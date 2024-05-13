@@ -7,16 +7,14 @@ class Master_card:
         self.player_answer_list = {}
 
     def get_player(self): 
-        find = True
         radio.on()
-        while find:
+        while True:
             serial_number_received=radio.receive()
             sleep(500)
             if serial_number_received!=None :
                 if serial_number_received in self._palyer_liste:
                     return "the player is already in the game"
                 else:
-                    find = False
                     self.set_player_id(serial_number_received,str(len(self._palyer_liste)+1))
                     radio.off()
                     break
