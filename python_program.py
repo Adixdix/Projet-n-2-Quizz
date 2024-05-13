@@ -50,6 +50,7 @@ class CommunicationMicrobit:
         if self.port.any():
             message = self.port.readall() # Reading the micro:bit message.
             if message != None:
+                message.decode('utf-8')
                 while message[index] != "M":
                     answer_list_invalid = answer_list_invalid + message[index]
                     index += 1
